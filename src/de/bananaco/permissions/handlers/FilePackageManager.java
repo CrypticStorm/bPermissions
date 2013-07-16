@@ -58,5 +58,23 @@ public class FilePackageManager implements PackageManager {
             e.printStackTrace();
         }
     }
+    
+    public void removePackage(String p, String v) {
+    	List<String> permissions = yamlConfiguration.getStringList(p.toLowerCase());
+        if(permissions == null) {
+            permissions = new ArrayList<String>();
+        }
+        // sanity checking
+        if(!permissions.contains(v)) {
+            return;
+        }
+        permissions.remove(v);
+        yamlConfiguration.set(p.toLowerCase(), permissions);
+        try {
+            yamlConfiguration.save(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

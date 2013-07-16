@@ -19,6 +19,10 @@ public class ApiLayer {
     public static void addToPackage(String name, String pack) {
         Packages.instance.handler.packageManager.addPackage(name, pack);
     }
+    
+    public static void removeFromPackage(String name, String pack) {
+    	Packages.instance.handler.packageManager.removePackage(name, pack);
+    }
 
     public static boolean existsPlayer(String player, String world) {
         // sanity checking
@@ -44,5 +48,17 @@ public class ApiLayer {
             }
         }
     }
-
+    
+    public static void removePlayer(String player, String world, String value) {
+        // sanity checking
+        world = (world == null || Packages.instance.global) ? "global" : world;
+        List<Carrier> carriers = Packages.instance.handler.carriers;
+        for(Carrier c : carriers) {
+            if(c.getName().equalsIgnoreCase(world)) {
+                Database db = c.getDatabase();
+                db.removeEntry(player, value);
+            }
+        }
+    }
+    
 }

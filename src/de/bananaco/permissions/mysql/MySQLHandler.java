@@ -173,6 +173,35 @@ public class MySQLHandler {
             e.printStackTrace();
         }
     }
+    
+    public void removeEntry(String p, String permission) {
+        if(!hasEntry(p, permission)) {
+            return;
+        }
+        try {
+            PreparedStatement ps = c.prepareStatement("DELETE FROM "+PACKAGE_TABLE+" WHERE player='"+p+"' AND package='"+permission+"';");;
+            //ps.setString(1, p);
+            //ps.setString(2, permission);
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeEntry(String player, String world, String value) {
+        if(!hasEntry(player, world, value)) {
+            return;
+        }
+        try {
+            PreparedStatement ps = c.prepareStatement("DELETE FROM "+PACKAGE_TABLE+" WHERE player='"+player+"' AND world='"+world+"' AND package='"+value+"';");
+            //ps.setString(1, player);
+            //ps.setString(2, world);
+            //ps.setString(3, value);
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public boolean hasEntry(String p, String permission) {
         String query = "SELECT permission FROM " + PACKAGE_TABLE + " WHERE package='" + p + "' AND permission='"+permission+"'";

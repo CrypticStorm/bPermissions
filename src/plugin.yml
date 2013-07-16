@@ -7,6 +7,10 @@ commands:
     usage: /<command> player package (world)
     permission: bpermissions.admin
     description: add a package entry to the database
+  removepackage:
+    usage: /<command> player package (world)
+    permission: bpermissions.admin
+    description: remove a package entry from the database
   permissions:
     usage: /<command>
     permission: bpermissions.admin

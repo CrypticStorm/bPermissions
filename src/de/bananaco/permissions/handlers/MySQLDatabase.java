@@ -48,6 +48,10 @@ public class MySQLDatabase implements Database {
     public void addEntry(String player, String entry) {
         handler.addEntry(player, tag, entry);
     }
+    
+    public void removeEntry(String player, String entry) {
+    	handler.removeEntry(player, tag, entry);
+    }
 
     public PPackage getPackage(String p) {
         return packageManager.getPackage(p);
@@ -57,5 +61,7 @@ public class MySQLDatabase implements Database {
         packageManager.addPackage(name, perm);
     }
 
-
+    public void removePackage(String name, String perm) {
+    	packageManager.removePackage(name, perm);
+    }
 }

@@ -85,6 +85,37 @@ public class FileDatabase implements Database {
             e.printStackTrace();
         }
     }
+    
+    public void removeEntry(String player, String entry) {
+    	File file = new File(root, player + ".txt");
+        if (!file.exists()) {
+            try {
+                root.mkdirs();
+                file.createNewFile();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        // now remove the entry
+        try {
+            List<String> packages = getPackages(player, file);
+            // sanity checking
+            if(!packages.contains(entry)) {
+                return;
+            }
+            
+            packages.remove(entry);
+            
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
+            // add the existing to the file first
+            for(String pack : packages) {
+                pw.println(pack);
+            }
+            pw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public PPackage getPackage(String p) {
         return packageManager.getPackage(p);
@@ -92,6 +123,10 @@ public class FileDatabase implements Database {
 
     public void addPackage(String v, String p) {
         packageManager.addPackage(v, p);
+    }
+    
+    public void removePackage(String v, String p) {
+    	packageManager.removePackage(v, p);
     }
 
 }

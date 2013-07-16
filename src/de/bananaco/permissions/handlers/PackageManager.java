@@ -7,5 +7,7 @@ public interface PackageManager {
     public PPackage getPackage(String p);
 
     public void addPackage(String p, String perm);
+    
+    public void removePackage(String p, String perm);
 
 }

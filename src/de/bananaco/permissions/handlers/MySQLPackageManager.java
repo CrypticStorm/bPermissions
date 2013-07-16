@@ -31,5 +31,9 @@ public class MySQLPackageManager implements PackageManager {
     public void addPackage(String p, String perm) {
         handler.addEntry(p, perm);
     }
+    
+    public void removePackage(String p, String perm) {
+    	handler.removeEntry(p, perm);
+    }
 
 }

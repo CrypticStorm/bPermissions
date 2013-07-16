@@ -14,5 +14,7 @@ public interface Database extends PackageManager {
     public boolean hasEntry(String player);
 
     public void addEntry(String player, String entry);
+    
+    public void removeEntry(String player, String entry);
 
 }
